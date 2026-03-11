@@ -7,8 +7,8 @@ export function Ctr({ children, className = '' }: { children: ReactNode; classNa
 }
 
 // ── Cards ───────────────────────────────────────────────────
-export function Card({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <div className={`bg-[#1a0a0f] border border-white/[.06] rounded-[20px] ${className}`}>{children}</div>
+export function Card({ children, className = '', style }: { children: ReactNode; className?: string; style?: React.CSSProperties }) {
+  return <div className={`bg-[#1a0a0f] border border-white/[.06] rounded-[20px] ${className}`} style={style}>{children}</div>
 }
 export function Card2({ children, className = '' }: { children: ReactNode; className?: string }) {
   return <div className={`bg-[#22101a] border border-white/[.05] rounded-[14px] ${className}`}>{children}</div>
@@ -30,15 +30,15 @@ export function ChallengeCard({ children, className = '' }: { children: ReactNod
 }
 
 // ── Buttons ─────────────────────────────────────────────────
-export function BtnPrimary({ children, onClick, disabled, className = '', full }: {
-  children: ReactNode; onClick?: () => void; disabled?: boolean; className?: string; full?: boolean
+export function BtnPrimary({ children, onClick, disabled, className = '', full, style }: {
+  children: ReactNode; onClick?: () => void; disabled?: boolean; className?: string; full?: boolean; style?: React.CSSProperties
 }) {
   return (
     <button
       onClick={onClick}
       disabled={disabled}
       className={`inline-flex items-center justify-center gap-2 rounded-full font-bold text-sm text-white transition-all duration-200 px-6 py-3 focus-visible:outline-2 focus-visible:outline-[#d42e52] focus-visible:outline-offset-2 disabled:opacity-35 disabled:cursor-not-allowed hover:enabled:-translate-y-0.5 active:enabled:scale-[.97] ${full ? 'w-full' : ''} ${className}`}
-      style={{ background: 'linear-gradient(135deg,#d42e52,#a81e3c)', boxShadow: '0 6px 24px rgba(212,46,82,.35)' }}
+      style={{ background: 'linear-gradient(135deg,#d42e52,#a81e3c)', boxShadow: '0 6px 24px rgba(212,46,82,.35)', ...style }}
     >{children}</button>
   )
 }
@@ -79,9 +79,9 @@ export function TagMuted({ children }: { children: ReactNode }) {
 }
 
 // ── Section Title ────────────────────────────────────────────
-export function STitle({ label, title, desc }: { label: string; title: string; desc?: string }) {
+export function STitle({ label, title, desc, className = '' }: { label: string; title: string; desc?: string; className?: string }) {
   return (
-    <div>
+    <div className={className}>
       <span className="block text-[10px] font-bold uppercase tracking-[.12em] text-[#d42e52] mb-1.5">{label}</span>
       <h3 className="font-serif text-[clamp(22px,5vw,30px)] font-normal leading-[1.15]">{title}</h3>
       {desc && <p className="text-xs text-[rgba(247,237,232,.42)] mt-1.5 leading-relaxed">{desc}</p>}
